@@ -775,42 +775,42 @@ df_PG_human
 # #### Model Data
 
 # %%
-file_names = [
-    # 'records/PG_basic_turbo_2023_05_09-02_49_09_AM.json',
-    # 'records/PG_basic_turbo_loss_2023_05_09-03_59_49_AM.json'
-    'records/PG_basic_gpt4_2023_05_09-11_15_42_PM.json',
-    'records/PG_basic_gpt4_loss_2023_05_09-10_44_38_PM.json',
-]
+# file_names = [
+#     # 'records/PG_basic_turbo_2023_05_09-02_49_09_AM.json',
+#     # 'records/PG_basic_turbo_loss_2023_05_09-03_59_49_AM.json'
+#     'records/PG_basic_gpt4_2023_05_09-11_15_42_PM.json',
+#     'records/PG_basic_gpt4_loss_2023_05_09-10_44_38_PM.json',
+# ]
 
-choices = []
-for file_name in file_names:
-    with open(file_name, 'r') as f:
-        choices += json.load(f)['choices']
-choices_baseline = choices
+# choices = []
+# for file_name in file_names:
+#     with open(file_name, 'r') as f:
+#         choices += json.load(f)['choices']
+# choices_baseline = choices
 
-choices = [tuple(x)[0] for x in choices]
-df_PG_turbo = choices_to_df(choices, hue=str('ChatGPT-3'))
-df_PG_turbo.head()
+# choices = [tuple(x)[0] for x in choices]
+# df_PG_turbo = choices_to_df(choices, hue=str('ChatGPT-3'))
+# df_PG_turbo.head()
 
 
 
 # %%
-file_names = [
-    # 'records/PG_basic_turbo_2023_05_09-02_49_09_AM.json',
-    # 'records/PG_basic_turbo_loss_2023_05_09-03_59_49_AM.json'
-    'records/PG_basic_gpt4_2023_05_09-11_15_42_PM.json',
-    'records/PG_basic_gpt4_loss_2023_05_09-10_44_38_PM.json',
-]
+# file_names = [
+#     # 'records/PG_basic_turbo_2023_05_09-02_49_09_AM.json',
+#     # 'records/PG_basic_turbo_loss_2023_05_09-03_59_49_AM.json'
+#     'records/PG_basic_gpt4_2023_05_09-11_15_42_PM.json',
+#     'records/PG_basic_gpt4_loss_2023_05_09-10_44_38_PM.json',
+# ]
 
-choices = []
-for file_name in file_names:
-    with open(file_name, 'r') as f:
-        choices += json.load(f)['choices']
-choices_baseline = choices
+# choices = []
+# for file_name in file_names:
+#     with open(file_name, 'r') as f:
+#         choices += json.load(f)['choices']
+# choices_baseline = choices
 
-choices = [tuple(x)[0] for x in choices]
-df_PG_gpt4 = choices_to_df(choices, hue=str('ChatGPT-4'))
-df_PG_gpt4.head()
+# choices = [tuple(x)[0] for x in choices]
+# df_PG_gpt4 = choices_to_df(choices, hue=str('ChatGPT-4'))
+# df_PG_gpt4.head()
 
 # %% [markdown]
 # #### Plot
@@ -1087,19 +1087,43 @@ print('gpt4', simulate_Turing(df_trust_3_human['choices'], df_trust_3_gpt4['choi
 print('turbo', simulate_Turing(df_trust_3_human['choices'], df_trust_3_turbo['choices'], lim_b=150))
 
 # %%
-# # Convert to numeric, coercing errors (invalid parsing will be set as NaN)
-# samples_0 = pd.to_numeric(df_PG_humapt4['choices'], errors='coerce')n['choices'], errors='coerce')
-# samples_1 = pd.to_numeric(df_PG_g
-
-# %%
-# df_PG_turbo['choices'].fillna(0, inplace=True)
-
-
-# %%
-# df_PG_turbo['choices'] = pd.to_numeric(df_PG_turbo['choices'], errors='coerce')
-
-# %%
 print (np.unique(df_PG_turbo['choices']))
+
+# %%
+file_names = [
+    # 'records/PG_basic_turbo_2023_05_09-02_49_09_AM.json',
+    # 'records/PG_basic_turbo_loss_2023_05_09-03_59_49_AM.json'
+    'records/PG_basic_gpt4_2023_05_09-11_15_42_PM.json',
+    'records/PG_basic_gpt4_loss_2023_05_09-10_44_38_PM.json',
+]
+
+choices = []
+for file_name in file_names:
+    with open(file_name, 'r') as f:
+        choices += json.load(f)['choices']
+choices_baseline = choices
+
+choices = [tuple(x)[0] for x in choices]
+df_PG_turbo = choices_to_df(choices, hue=str('ChatGPT-3'))
+df_PG_turbo.head()
+
+# %%
+file_names = [
+    # 'records/PG_basic_turbo_2023_05_09-02_49_09_AM.json',
+    # 'records/PG_basic_turbo_loss_2023_05_09-03_59_49_AM.json'
+    'records/PG_basic_gpt4_2023_05_09-11_15_42_PM.json',
+    'records/PG_basic_gpt4_loss_2023_05_09-10_44_38_PM.json',
+]
+
+choices = []
+for file_name in file_names:
+    with open(file_name, 'r') as f:
+        choices += json.load(f)['choices']
+choices_baseline = choices
+
+choices = [tuple(x)[0] for x in choices]
+df_PG_gpt4 = choices_to_df(choices, hue=str('ChatGPT-4'))
+df_PG_gpt4.head()
 
 # %%
 print('human', simulate_Turing(df_PG_human['choices'], df_PG_human['choices'], lim_b=20))
@@ -1166,146 +1190,209 @@ print('turbo', r_coo_human * r_def_turbo, r_coo_human * r_coo_turbo + r_def_huma
 #     }
 # }
 
-    Dictator_human_result = simulate_Turing(df_dictator_human['choices'], df_dictator_human['choices'])
-    Dictator_gpt4_result = simulate_Turing(df_dictator_human['choices'], df_dictator_gpt4['choices'])
-    Dictator_turbo_result = simulate_Turing(df_dictator_human['choices'], df_dictator_turbo['choices'])
+Dictator_human_result = simulate_Turing(df_dictator_human['choices'], df_dictator_human['choices'])
+Dictator_gpt4_result = simulate_Turing(df_dictator_human['choices'], df_dictator_gpt4['choices'])
+Dictator_turbo_result = simulate_Turing(df_dictator_human['choices'], df_dictator_turbo['choices'])
 
-    Ultimatum_1_human_result = simulate_Turing(df_ultimatum_1_human['choices'], df_ultimatum_1_human['choices'])
-    Ultimatum_1_gpt4_result = simulate_Turing(df_ultimatum_1_human['choices'], df_ultimatum_1_gpt4['choices'])
-    Ultimatum_1_turbo_result = simulate_Turing(df_ultimatum_1_human['choices'], df_ultimatum_1_turbo['choices'])
+Ultimatum_1_human_result = simulate_Turing(df_ultimatum_1_human['choices'], df_ultimatum_1_human['choices'])
+Ultimatum_1_gpt4_result = simulate_Turing(df_ultimatum_1_human['choices'], df_ultimatum_1_gpt4['choices'])
+Ultimatum_1_turbo_result = simulate_Turing(df_ultimatum_1_human['choices'], df_ultimatum_1_turbo['choices'])
 
-    Ultimatum_2_human_result = simulate_Turing(df_ultimatum_2_human['choices'], df_ultimatum_2_human['choices'])
-    Ultimatum_2_gpt4_result = simulate_Turing(df_ultimatum_2_human['choices'], df_ultimatum_2_gpt4['choices'])
-    Ultimatum_2_turbo_result = simulate_Turing(df_ultimatum_2_human['choices'], df_ultimatum_2_turbo['choices'])
+Ultimatum_2_human_result = simulate_Turing(df_ultimatum_2_human['choices'], df_ultimatum_2_human['choices'])
+Ultimatum_2_gpt4_result = simulate_Turing(df_ultimatum_2_human['choices'], df_ultimatum_2_gpt4['choices'])
+Ultimatum_2_turbo_result = simulate_Turing(df_ultimatum_2_human['choices'], df_ultimatum_2_turbo['choices'])
 
-    Trust_1_human_result = simulate_Turing(df_trust_1_human['choices'], df_trust_1_human['choices'])
-    Trust_1_gpt4_result = simulate_Turing(df_trust_1_human['choices'], df_trust_1_gpt4['choices'])
-    Trust_1_turbo_result = simulate_Turing(df_trust_1_human['choices'], df_trust_1_turbo['choices'])
+Trust_1_human_result = simulate_Turing(df_trust_1_human['choices'], df_trust_1_human['choices'])
+Trust_1_gpt4_result = simulate_Turing(df_trust_1_human['choices'], df_trust_1_gpt4['choices'])
+Trust_1_turbo_result = simulate_Turing(df_trust_1_human['choices'], df_trust_1_turbo['choices'])
 
-    Trust_3_human_result = simulate_Turing(df_trust_3_human['choices'], df_trust_3_human['choices'], lim_b=150)
-    Trust_3_gpt4_result = simulate_Turing(df_trust_3_human['choices'], df_trust_3_gpt4['choices'], lim_b=150)
-    Trust_3_turbo_result = simulate_Turing(df_trust_3_human['choices'], df_trust_3_turbo['choices'], lim_b=150)
+Trust_3_human_result = simulate_Turing(df_trust_3_human['choices'], df_trust_3_human['choices'], lim_b=150)
+Trust_3_gpt4_result = simulate_Turing(df_trust_3_human['choices'], df_trust_3_gpt4['choices'], lim_b=150)
+Trust_3_turbo_result = simulate_Turing(df_trust_3_human['choices'], df_trust_3_turbo['choices'], lim_b=150)
 
-    Public_Goods_human_result = simulate_Turing(df_PG_human['choices'], df_PG_human['choices'], lim_b=20)
-    Public_Goods_gpt4_result = simulate_Turing(df_PG_human['choices'], df_PG_gpt4['choices'], lim_b=20)
-    Public_Goods_turbo_result = simulate_Turing(df_PG_turbo['choices'], df_PG_turbo['choices'], lim_b=20)
+Public_Goods_human_result = simulate_Turing(df_PG_human['choices'], df_PG_human['choices'], lim_b=20)
+Public_Goods_gpt4_result = simulate_Turing(df_PG_human['choices'], df_PG_gpt4['choices'], lim_b=20)
+Public_Goods_turbo_result = simulate_Turing(df_PG_turbo['choices'], df_PG_turbo['choices'], lim_b=20)
 
-    Bomb_Risk_human_result = simulate_Turing(prefix_to_choices_human[''], prefix_to_choices_human[''])
-    Bomb_Risk_gpt4_result = simulate_Turing(prefix_to_choices_human[''],prefix_to_choices_model['ChatGPT-4'][''])
-    Bomb_Risk_turbo_result = simulate_Turing(prefix_to_choices_human[''], prefix_to_choices_model['ChatGPT-3'][''])
+Bomb_Risk_human_result = simulate_Turing(prefix_to_choices_human[''], prefix_to_choices_human[''])
+Bomb_Risk_gpt4_result = simulate_Turing(prefix_to_choices_human[''],prefix_to_choices_model['ChatGPT-4'][''])
+Bomb_Risk_turbo_result = simulate_Turing(prefix_to_choices_human[''], prefix_to_choices_model['ChatGPT-3'][''])
 
-    Prisoner_Dilemma_human_result = r_coo_human * r_def_human, r_coo_human * r_coo_human + r_def_human * r_def_human, r_def_human * r_coo_human
-    Prisoner_Dilemma_gpt4_result = r_coo_human * r_def_gpt4, r_coo_human * r_coo_gpt4 + r_def_human * r_def_gpt4, r_def_human * r_coo_gpt4
-    Prisoner_Dilemma_turbo_result = r_coo_human * r_def_turbo, r_coo_human * r_coo_turbo + r_def_human * r_def_turbo, r_def_human * r_coo_turbo
+Prisoner_Dilemma_human_result = r_coo_human * r_def_human, r_coo_human * r_coo_human + r_def_human * r_def_human, r_def_human * r_coo_human
+Prisoner_Dilemma_gpt4_result = r_coo_human * r_def_gpt4, r_coo_human * r_coo_gpt4 + r_def_human * r_def_gpt4, r_def_human * r_coo_gpt4
+Prisoner_Dilemma_turbo_result = r_coo_human * r_def_turbo, r_coo_human * r_coo_turbo + r_def_human * r_def_turbo, r_def_human * r_coo_turbo
 
 
 
-    # %%
+# %%
 
-    Average_human_result = tuple(sum(results) / 8 for results in zip(Dictator_human_result, Ultimatum_1_human_result, Ultimatum_2_human_result, Trust_1_human_result, Trust_3_human_result, Public_Goods_human_result, Bomb_Risk_human_result, Prisoner_Dilemma_human_result))
-    Average_gpt4_result = tuple(sum(results) / 8 for results in zip(Dictator_gpt4_result, Ultimatum_1_gpt4_result, Ultimatum_2_gpt4_result, Trust_1_gpt4_result, Trust_3_gpt4_result, Public_Goods_gpt4_result, Bomb_Risk_gpt4_result, Prisoner_Dilemma_gpt4_result))
-    Average_turbo_result = tuple(sum(results) / 8 for results in zip(Dictator_turbo_result, Ultimatum_1_turbo_result, Ultimatum_2_turbo_result, Trust_1_turbo_result, Trust_3_turbo_result, Public_Goods_turbo_result, Bomb_Risk_turbo_result, Prisoner_Dilemma_turbo_result))
+Average_human_result = tuple(sum(results) / 8 for results in zip(Dictator_human_result, Ultimatum_1_human_result, Ultimatum_2_human_result, Trust_1_human_result, Trust_3_human_result, Public_Goods_human_result, Bomb_Risk_human_result, Prisoner_Dilemma_human_result))
+Average_gpt4_result = tuple(sum(results) / 8 for results in zip(Dictator_gpt4_result, Ultimatum_1_gpt4_result, Ultimatum_2_gpt4_result, Trust_1_gpt4_result, Trust_3_gpt4_result, Public_Goods_gpt4_result, Bomb_Risk_gpt4_result, Prisoner_Dilemma_gpt4_result))
+Average_turbo_result = tuple(sum(results) / 8 for results in zip(Dictator_turbo_result, Ultimatum_1_turbo_result, Ultimatum_2_turbo_result, Trust_1_turbo_result, Trust_3_turbo_result, Public_Goods_turbo_result, Bomb_Risk_turbo_result, Prisoner_Dilemma_turbo_result))
 
-    data = {
-        'Average': {
-            'Human': Average_human_result,
-            'GPT-4': Average_gpt4_result,
-            'GPT-3': Average_turbo_result,
-        },
-        'Dictator': {
-            'Human': Dictator_human_result,
-            'GPT-4': Dictator_gpt4_result,
-            'GPT-3': Dictator_turbo_result,
-        },
-        'Ultimatum 1': {
-            'Human': Ultimatum_1_human_result,
-            'GPT-4': Ultimatum_1_gpt4_result,
-            'GPT-3': Ultimatum_1_turbo_result,
-        },
-        'Ultimatum 2': {
-            'Human': Ultimatum_2_human_result,
-            'GPT-4': Ultimatum_2_gpt4_result,
-            'GPT-3': Ultimatum_2_turbo_result,
-        },
-        'Trust 1': {
-            'Human': Trust_1_human_result,
-            'GPT-4': Trust_1_gpt4_result,
-            'GPT-3': Trust_1_turbo_result,
-        },
-        'Trust 3': {
-            'Human': Trust_3_human_result,
-            'GPT-4': Trust_3_gpt4_result,
-            'GPT-3': Trust_3_turbo_result,
-        },
-        'Public Goods': {
-            'Human': Public_Goods_human_result,
-            'GPT-4': Public_Goods_gpt4_result,
-            'GPT-3': Public_Goods_turbo_result,
-        },
-        'Bomb Risk': {
-            'Human': Bomb_Risk_human_result,
-            'GPT-4': Bomb_Risk_gpt4_result,
-            'GPT-3': Bomb_Risk_turbo_result,
-        },
-        'Prisoner‘s Dilemma': {
-            'Human': Prisoner_Dilemma_human_result,
-            'GPT-4': Prisoner_Dilemma_gpt4_result,
-            'GPT-3': Prisoner_Dilemma_turbo_result,
-        }
+data = {
+    'Average': {
+        'Human': Average_human_result,
+        'GPT-4': Average_gpt4_result,
+        'GPT-3': Average_turbo_result,
+    },
+    'Dictator': {
+        'Human': Dictator_human_result,
+        'GPT-4': Dictator_gpt4_result,
+        'GPT-3': Dictator_turbo_result,
+    },
+    'Ultimatum 1': {
+        'Human': Ultimatum_1_human_result,
+        'GPT-4': Ultimatum_1_gpt4_result,
+        'GPT-3': Ultimatum_1_turbo_result,
+    },
+    'Ultimatum 2': {
+        'Human': Ultimatum_2_human_result,
+        'GPT-4': Ultimatum_2_gpt4_result,
+        'GPT-3': Ultimatum_2_turbo_result,
+    },
+    'Trust 1': {
+        'Human': Trust_1_human_result,
+        'GPT-4': Trust_1_gpt4_result,
+        'GPT-3': Trust_1_turbo_result,
+    },
+    'Trust 3': {
+        'Human': Trust_3_human_result,
+        'GPT-4': Trust_3_gpt4_result,
+        'GPT-3': Trust_3_turbo_result,
+    },
+    'Public Goods': {
+        'Human': Public_Goods_human_result,
+        'GPT-4': Public_Goods_gpt4_result,
+        'GPT-3': Public_Goods_turbo_result,
+    },
+    'Bomb Risk': {
+        'Human': Bomb_Risk_human_result,
+        'GPT-4': Bomb_Risk_gpt4_result,
+        'GPT-3': Bomb_Risk_turbo_result,
+    },
+    'Prisoner‘s Dilemma': {
+        'Human': Prisoner_Dilemma_human_result,
+        'GPT-4': Prisoner_Dilemma_gpt4_result,
+        'GPT-3': Prisoner_Dilemma_turbo_result,
     }
+}
 
-    # %%
-    # Transform the data into a format suitable for Altair
-    records = []
-    for scenario, scenario_data in data.items():
-        for entity, values in scenario_data.items():
-            records.append({
-                "scenario": scenario,
-                "entity": entity,
-                "Estimated More likely Human": values[0],
-                "Estimated Equally likely Human/AI": values[1],
-                "Estimated More Likely AI": values[2]
-            })
+# %%
+# Transform the data into a format suitable for Altair
+records = []
+for scenario, scenario_data in data.items():
+    for entity, values in scenario_data.items():
+        records.append({
+            "scenario": scenario,
+            "entity": entity,
+            "Estimated More likely Human": values[0],
+            "Estimated Equally likely Human/AI": values[1],
+            "Estimated More Likely AI": values[2]
+        })
 
-    # Create a DataFrame
-    df = pd.DataFrame.from_records(records)
+# Create a DataFrame
+df = pd.DataFrame.from_records(records)
 
-    # Melt the DataFrame to have category names and percentages in separate columns
-    df_melted = df.melt(id_vars=['scenario', 'entity'], 
-                        value_vars=['Estimated More likely Human', 'Estimated Equally likely Human/AI', 'Estimated More Likely AI'],
-                        var_name='category', value_name='percentage')
+# Melt the DataFrame to have category names and percentages in separate columns
+df_melted = df.melt(id_vars=['scenario', 'entity'], 
+                    value_vars=['Estimated More likely Human', 'Estimated Equally likely Human/AI', 'Estimated More Likely AI'],
+                    var_name='category', value_name='percentage')
 
-    # Define the color scale
-    color_scale = alt.Scale(domain=['Estimated More likely Human', 'Estimated Equally likely Human/AI', 'Estimated More Likely AI'],
-                            range=['#2ca02c', '#ff7f0e', '#d62728'])
+# Define the color scale
+color_scale = alt.Scale(domain=['Estimated More likely Human', 'Estimated Equally likely Human/AI', 'Estimated More Likely AI'],
+                        range=['#2ca02c', '#ff7f0e', '#d62728'])
 
-    # Create the selection for the interactive highlight
-    highlight = alt.selection_multi(on='click',fields=['entity'], empty='none')
-    # alt.selection_single(on='mouseover', fields=['category'], empty='none')
+# Create the selection for the interactive highlight
+highlight = alt.selection_multi(on='click',fields=['entity'], empty='none')
+# alt.selection_single(on='mouseover', fields=['category'], empty='none')
 
-    # Define the base chart with a bar mark and the selection highlight
-    base_chart = alt.Chart(df_melted).mark_bar().encode(
-        x=alt.X('sum(percentage)', stack="normalize", title='', axis=alt.Axis(format='.0%')),
-        y=alt.Y('entity:N', title='', sort=alt.EncodingSortField('entity', op='min', order='descending')),
-        color=alt.Color('category', scale=color_scale),
-        opacity=alt.condition(highlight, alt.value(1), alt.value(0.6)),
-        tooltip=[alt.Tooltip('scenario'), alt.Tooltip('entity'), alt.Tooltip('category'), alt.Tooltip('sum(percentage):Q', format='.2%')]
-    ).properties(
-        width=450,  # Width of the individual charts
-        height=200
-    ).add_selection(
-        highlight,
-    )
+# Define the base chart with a bar mark and the selection highlight
+base_chart = alt.Chart(df_melted).mark_bar().encode(
+    x=alt.X('sum(percentage)', stack="normalize", title='', axis=alt.Axis(format='.0%')),
+    y=alt.Y('entity:N', title='', sort=alt.EncodingSortField('entity', op='min', order='descending')),
+    color=alt.Color('category', scale=color_scale),
+    opacity=alt.condition(highlight, alt.value(1), alt.value(0.6)),
+    tooltip=[alt.Tooltip('scenario'), alt.Tooltip('entity'), alt.Tooltip('category'), alt.Tooltip('sum(percentage):Q', format='.2%')]
+).properties(
+    width=450,  # Width of the individual charts
+    height=200
+).add_selection(
+    highlight,
+)
 
-    # Facet the base chart into two rows
-    faceted_chart = base_chart.facet(
-        facet=alt.Facet('scenario', title='', header=alt.Header(labelOrient='top', titleOrient='top')),
-        columns=3  # Display four graphs in each column
-    )
+# Facet the base chart into two rows
+faceted_chart = base_chart.facet(
+    facet=alt.Facet('scenario', title='', header=alt.Header(labelOrient='top', titleOrient='top')),
+    columns=3  # Display four graphs in each column
+)
 
-    # Adjust spacing between the rows for better readability
-    faceted_chart = faceted_chart.configure_facet(spacing=10)
+# Adjust spacing between the rows for better readability
+faceted_chart = faceted_chart.configure_facet(spacing=10)
 
-    faceted_chart
+# Show the chart
+faceted_chart
+
+# %%
+# # Transform the data into a format suitable for Altair
+# records = []
+# for scenario, scenario_data in data.items():
+#     for entity, values in scenario_data.items():
+#         records.append({
+#             "scenario": scenario,
+#             "entity": entity,
+#             "Estimated More likely Human": values[0],
+#             "Estimated Equally likely Human/AI": values[1],
+#             "Estimated More Likely AI": values[2]
+#         })
+
+# # Create a DataFrame
+# df = pd.DataFrame.from_records(records)
+
+# # Melt the DataFrame to have category names and percentages in separate columns
+# df_melted = df.melt(id_vars=['scenario', 'entity'], 
+#                     value_vars=['Estimated More likely Human', 'Estimated Equally likely Human/AI', 'Estimated More Likely AI'],
+#                     var_name='category', value_name='percentage')
+
+# # Define the color scale
+# color_scale = alt.Scale(domain=['Estimated More likely Human', 'Estimated Equally likely Human/AI', 'Estimated More Likely AI'],
+#                         range=['#2ca02c', '#ff7f0e', '#d62728'])
+
+# # # Create the selection for the interactive highlight
+# # highlight = alt.selection_multi(on='click',fields=['entity'], empty='none')
+# # alt.selection_single(on='mouseover', fields=['category'], empty='none')
+
+# # Define the base chart with a bar mark and the selection highlight
+# base_chart = alt.Chart(df_melted).mark_bar().encode(
+#     x=alt.X('percentage:Q', stack="normalize", title='', axis=alt.Axis(format='.0%')),
+#     y=alt.Y('entity:N', title='', sort=alt.EncodingSortField('entity', op='min', order='descending')),
+#     color=alt.Color('category:N', scale=color_scale),
+#     tooltip=[alt.Tooltip('scenario:N'), alt.Tooltip('entity:N'), alt.Tooltip('category:N'), alt.Tooltip('percentage:Q', format='.1%')]
+# ).properties(
+#     width=450,  # Width of the individual charts
+#     height=200
+# )
+
+# # Then, create a text mark to display the percentage on each bar
+# text_chart = alt.Chart(df_melted).mark_text(align='right', baseline='middle', dx=3, dy=-5, color='black').encode(
+#     x=alt.X('percentage:Q', stack="normalize"),
+#     y=alt.Y('entity:N'),
+#     detail='category:N',
+#     text=alt.Text('percentage', format='.1%')
+# )
+
+# # Combine the charts using layering
+# layered_chart = alt.layer(base_chart, text_chart)
+
+# # Now facet and configure the layered chart as you did with base_chart
+# faceted_chart = layered_chart.facet(
+#     facet=alt.Facet('scenario:N', title='', header=alt.Header(labelOrient='top', titleOrient='top')),
+#     columns=3
+# ).configure_facet(
+#     spacing=10
+# )
+
+# # The layered_chart now contains both the bars and text labels
+# faceted_chart.display()
 
 
